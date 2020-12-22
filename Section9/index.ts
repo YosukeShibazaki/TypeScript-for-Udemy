@@ -1,4 +1,21 @@
-class Score {
+interface Scoreable {
+    readonly totalScore: number;
+    render(): void;
+}
+
+interface Foodable {
+    element: HTMLDivElement;
+    clickEventHandler(): void;
+}
+
+interface Foodsable {
+    elements: NodeListOf<HTMLDivElement>;
+    readonly activeElements: HTMLDivElement[];
+    readonly activeElementsScore: number[];
+}
+
+
+class Score implements Scoreable{
     private static instance: Score;
 
     private constructor(){} // 何もしない
@@ -25,7 +42,7 @@ class Score {
     }
 }
 
-class Food {
+class Food implements Foodable{
     constructor(public element: HTMLDivElement){
         element.addEventListener('click', this.clickEventHandler.bind(this)); // ここのthisはFoodクラスのこと。
     }
@@ -39,7 +56,7 @@ class Food {
     }
 }
 
-class Foods {
+class Foods implements Foodsable{
     private static instance: Foods;
     elements = document.querySelectorAll<HTMLDivElement>('.food'); // foodクラスを全て取得する。
     private _activeElements: HTMLDivElement[] = []; // food--activeクラスを格納するためのプロパティ。
