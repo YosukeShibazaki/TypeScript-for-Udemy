@@ -1,5 +1,10 @@
 class Score {
-
+    get totalScore(){
+        const foods = new Foods();
+        // 合計を返す
+        // reducdeの第1引数は、コールバック関数。第2引数は合計したい値の初期値。scoreには配列の値が代入される。
+        return foods.activeElementsScore.reduce((total, score) => total + score, 0);
+    }
 }
 
 class Food {
