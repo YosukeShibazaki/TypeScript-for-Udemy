@@ -16,6 +16,19 @@ class Food {
 
 class Foods {
     elements = document.querySelectorAll<HTMLDivElement>('.food'); // foodクラスを全て取得する。
+    private _activeElements: HTMLDivElement[] = []; // food--activeクラスを格納するためのプロパティ。Score用。
+
+    get activeElemnts(){
+        // 配列を初期化する
+        this._activeElements = [];
+        // food--activeクラスを持つ要素全てを配列に格納する。
+        this.elements.forEach(element => {
+            if(element.classList.contains('food--active')){
+                this._activeElements.push(element);
+            }
+        })
+        return this._activeElements;
+    }
 
     constructor(){
         this.elements.forEach( element => { // foodクラスの要素全てを1つずつインスタンス生成する。
