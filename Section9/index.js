@@ -6,6 +6,10 @@ class Score {
         // reducdeの第1引数は、コールバック関数。第2引数は合計したい値の初期値。scoreには配列の値が代入される。
         return foods.activeElementsScore.reduce((total, score) => total + score, 0);
     }
+    render() {
+        // 合計点をレンダリングする
+        document.querySelector('.score__number').textContent = String(this.totalScore);
+    }
 }
 class Food {
     constructor(element) {
@@ -16,6 +20,8 @@ class Food {
         // foodクラスの要素に、food--activeクラスがあれば、food--activeを消す。なければ付ける。
         // 呼び出しもとでbind(this)を書くと、この関数内のthisはFoodクラス(bindで指定したthis)となる。
         this.element.classList.toggle('food--active');
+        const score = new Score();
+        score.render();
     }
 }
 class Foods {
@@ -27,7 +33,7 @@ class Foods {
             new Food(element);
         });
     }
-    get activeElemnts() {
+    get activeElements() {
         // 配列を初期化する
         this._activeElements = [];
         // food--activeクラスを持つ要素全てを配列に格納する。
@@ -42,7 +48,7 @@ class Foods {
         // 配列を初期化する
         this._activeElementsScore = [];
         // food__scoreクラスのテキストを数値として配列に格納する。
-        this._activeElements.forEach(element => {
+        this.activeElements.forEach(element => {
             const foodScore = element.querySelector('.food__score');
             if (foodScore) {
                 // ScoreのtextContentがNullならNumberインスタンスにより0に変換される。
