@@ -1,7 +1,8 @@
 "use strict";
 class Score {
+    constructor() { } // 何もしない
     get totalScore() {
-        const foods = new Foods();
+        const foods = Foods.getInstance();
         // 合計を返す
         // reducdeの第1引数は、コールバック関数。第2引数は合計したい値の初期値。scoreには配列の値が代入される。
         return foods.activeElementsScore.reduce((total, score) => total + score, 0);
@@ -9,6 +10,14 @@ class Score {
     render() {
         // 合計点をレンダリングする
         document.querySelector('.score__number').textContent = String(this.totalScore);
+    }
+    static getInstance() {
+        // シングルトンパターンの使用。
+        if (!Score.instance) {
+            // インスタンスが生成されていない場合のみインスタンスを生成するようにする。
+            Score.instance = new Score();
+        }
+        return Score.instance;
     }
 }
 class Food {
@@ -20,7 +29,7 @@ class Food {
         // foodクラスの要素に、food--activeクラスがあれば、food--activeを消す。なければ付ける。
         // 呼び出しもとでbind(this)を書くと、この関数内のthisはFoodクラス(bindで指定したthis)となる。
         this.element.classList.toggle('food--active');
-        const score = new Score();
+        const score = Score.getInstance();
         score.render();
     }
 }
@@ -57,5 +66,13 @@ class Foods {
         });
         return this._activeElementsScore;
     }
+    static getInstance() {
+        // シングルトンパターンの使用。
+        if (!Foods.instance) {
+            // インスタンスが生成されていない場合のみインスタンスを生成するようにする。
+            this.instance = new Foods();
+        }
+        return Foods.instance;
+    }
 }
-const foods = new Foods();
+const foods = Foods.getInstance();
