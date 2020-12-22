@@ -15,7 +15,8 @@ class Food {
 class Foods {
     constructor() {
         this.elements = document.querySelectorAll('.food'); // foodクラスを全て取得する。
-        this._activeElements = []; // food--activeクラスを格納するためのプロパティ。Score用。
+        this._activeElements = []; // food--activeクラスを格納するためのプロパティ。
+        this._activeElementsScore = []; // food--activeクラスが付いた要素の、food__scoreのテキストを格納する配列。
         this.elements.forEach(element => {
             new Food(element);
         });
@@ -30,6 +31,19 @@ class Foods {
             }
         });
         return this._activeElements;
+    }
+    get activeElementsScore() {
+        // 配列を初期化する
+        this._activeElementsScore = [];
+        // food__scoreクラスのテキストを数値として配列に格納する。
+        this._activeElements.forEach(element => {
+            const foodScore = element.querySelector('.food__score');
+            if (foodScore) {
+                // ScoreのtextContentがNullならNumberインスタンスにより0に変換される。
+                this._activeElementsScore.push(Number(foodScore.textContent));
+            }
+        });
+        return this._activeElementsScore;
     }
 }
 const foods = new Foods();
