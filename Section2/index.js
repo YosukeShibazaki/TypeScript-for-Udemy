@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const greething = 'hello!';
 console.log(greething);
 // Section2-14
@@ -119,3 +117,4 @@ function error(message) {
     throw new Error(message);
 }
 console.log(error('this is error!'));
+export {};

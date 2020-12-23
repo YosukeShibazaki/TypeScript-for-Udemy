@@ -1,4 +1,7 @@
-class Score implements Scoreable{
+import { Scoreable } from './Interfaces.js';
+import { Foods } from './Foods.js';
+
+export class Score implements Scoreable{
     private static instance: Score;
 
     private constructor(){} // 何もしない

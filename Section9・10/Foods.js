@@ -1,5 +1,5 @@
-"use strict";
-class Foods {
+import { Food } from './Food.js';
+export class Foods {
     constructor() {
         this.elements = document.querySelectorAll('.food'); // foodクラスを全て取得する。
         this._activeElements = []; // food--activeクラスを格納するためのプロパティ。

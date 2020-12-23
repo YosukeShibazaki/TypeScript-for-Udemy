@@ -1,5 +1,5 @@
-"use strict";
-class Score {
+import { Foods } from './Foods.js';
+export class Score {
     constructor() { } // 何もしない
     get totalScore() {
         const foods = Foods.getInstance();

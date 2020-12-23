@@ -1,4 +1,7 @@
-class Foods implements Foodsable{
+import { Foodsable } from './Interfaces.js';
+import { Food } from './Food.js';
+
+export class Foods implements Foodsable{
     private static instance: Foods;
     elements = document.querySelectorAll<HTMLDivElement>('.food'); // foodクラスを全て取得する。
     private _activeElements: HTMLDivElement[] = []; // food--activeクラスを格納するためのプロパティ。
