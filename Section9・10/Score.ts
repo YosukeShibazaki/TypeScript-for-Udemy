@@ -1,7 +1,8 @@
-import { Scoreable } from './Interfaces.js';
+import * as Interfaces from './Interfaces.js'; // 全部インポートする方法
+// import { Scoreable as TotalScore } from './Interfaces.js'; 名前を変更してインポートする方法
 import { Foods } from './Foods.js';
 
-export class Score implements Scoreable{
+export class Score implements Interfaces.Scoreable{
     private static instance: Score;
 
     private constructor(){} // 何もしない

@@ -1,3 +1,4 @@
+// import { Scoreable as TotalScore } from './Interfaces.js'; 名前を変更してインポートする方法
 import { Foods } from './Foods.js';
 export class Score {
     constructor() { } // 何もしない
